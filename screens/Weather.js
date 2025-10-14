@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { useState } from 'react';
 import backgroung from "../assets/building1.jpg";
 
 const Weather = () => {
-  // Static placeholder values for now
-  const temp = 0;
+  // Temperature is now state-based (to be connected later)
+  const [temp, setTemp] = useState(28);
+
+  // Still using static values for now
   const humidity = 0;
   const pressure = 0;
 
@@ -12,9 +15,10 @@ const Weather = () => {
       source={backgroung}
       style={styles.container}
     >
-      {/* Temperature section */}
+      {/* ✅ Dynamic Temperature Display */}
       <View style={styles.tempWrappper}>
         <Text style={styles.text}>{temp}°</Text>
+        <Text style={styles.tempLabel}>Current Temperature</Text>
       </View>
 
       {/* Placeholder for humidity and pressure */}
@@ -47,6 +51,8 @@ const styles = StyleSheet.create({
   tempWrappper: {
     flex: 1,
     justifyContent: "center",
+    alignItems: "flex-end",
+    paddingRight: 35,
   },
 
   text: {
@@ -54,7 +60,13 @@ const styles = StyleSheet.create({
     fontWeight: "100",
     textAlign: "right",
     color: "white",
-    paddingRight: 35,
+  },
+
+  tempLabel: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "300",
+    marginTop: -10,
   },
 
   data: {
